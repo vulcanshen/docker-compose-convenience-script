@@ -5,7 +5,7 @@ dcp.sh is a shell script designed to simplify common Docker Compose commands, pr
 - Alias functionality: Sets dcp as an alias for docker-compose for quick and easy use.
 - Default plugin mode: Uses Docker Compose plugin mode by default for a more streamlined experience.
 - Standalone mode support: If you're using the standalone docker-compose command, simply set the COMPOSE_CMD environment variable.
-- Quick reload: Use the dcp reload command to quickly stop and restart all services.
+- Quick reload: Use the `dcp reload` command to quickly stop and restart all services.
 
 
 # Installation
