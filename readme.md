@@ -42,9 +42,12 @@ export COMPOSE_CMD="docker-compose"
 
 ## Quick reload
 
-Use the dcp reload command to quickly stop and restart all services:
+`dcp reload` is a convenient command that helps you quickly update your Docker Compose configuration without having to manually stop and start services.
+
+The `dcp reload` command provides a quick way to stop and restart all services. It first executes the `down` command to stop all running services, then runs the `up -d` command to restart them. This sequence ensures that any updates made to your YAML configuration file will take effect immediately. In other words, if you modify your Docker Compose YAML file and then run `dcp reload`, the containers will be recreated based on the new configuration, allowing your application to reflect the latest changes.
 
 ```sh
+# execute `down` then `up -d`
 dcp reload
 ```
 
