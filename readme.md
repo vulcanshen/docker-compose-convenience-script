@@ -53,7 +53,7 @@ in your running containers.
 
 **Usage examples**
 
-- Basic reload (equivalent to docker-compose down && docker-compose up):
+- Basic reload (equivalent to `docker-compose down && docker-compose up`):
 
     ```sh
     dcp reload
