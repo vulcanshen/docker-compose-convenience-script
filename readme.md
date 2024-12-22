@@ -1,12 +1,11 @@
 # Docker Compose Convenience Script (dcp.sh)
 
-dcp.sh is a shell script designed to simplify common Docker Compose commands, providing a more efficient way to manage your Dockerized applications. This script offers several convenient features, including:
+`dcp.sh` is a shell script designed to streamline your Docker Compose workflow by simplifying common commands and offering several convenient features:
 
-- Alias functionality: Sets dcp as an alias for docker-compose for quick and easy use.
-- Default plugin mode: Uses Docker Compose plugin mode by default for a more streamlined experience.
-- Standalone mode support: If you're using the standalone docker-compose command, simply set the COMPOSE_CMD environment variable.
-- Quick reload: Use the `dcp reload` command to quickly stop and restart all services.
-
+- **Quick reload**: Effortlessly update your Dockerized application's configuration with `dcp reload`. This command seamlessly stops and restarts all services, ensuring the latest changes in your docker-compose.yml file are immediately reflected.
+- **Alias functionality**: Use `dcp` as a handy alias for docker-compose, saving you time and keystrokes.
+- **Default plugin mode**: Enjoy a more streamlined experience with the default plugin mode.
+- **Standalone mode support**: If you're using the standalone docker-compose command, simply set the **COMPOSE_CMD** environment variable.
 
 # Installation
 
@@ -19,7 +18,7 @@ source dcp.sh
 
 ## As a Docker Compose alias
 
-After installation, you can use dcp directly in place of docker-compose. For example:
+After installation, you can leverage dcp directly in place of docker-compose. Here are some examples:
 
 ```sh
 # List all services
@@ -28,13 +27,13 @@ dcp ps
 # Start all services in detached mode
 dcp up -d
 
-# Shutdown all service
+# Shutdown all services
 dcp down
 ```
 
 ## Standalone Docker Compose mode
 
-If you're using the standalone docker-compose command, set the COMPOSE_CMD environment variable before using dcp.sh:
+If you're using the standalone docker-compose command, set the **COMPOSE_CMD** environment variable before using dcp.sh:
 
 ```sh
 export COMPOSE_CMD="docker-compose"
@@ -42,22 +41,49 @@ export COMPOSE_CMD="docker-compose"
 
 ## Quick reload
 
-`dcp reload` is a convenient command that helps you quickly update your Docker Compose configuration without having to manually stop and start services.
+The `dcp reload` command simplifies updating your Docker Compose configuration. 
+It automates the process of stopping and restarting all services, 
+ensuring that any modifications you make to your docker-compose.yml file are promptly reflected 
+in your running containers.
 
-The `dcp reload` command provides a quick way to stop and restart all services. It first executes the `down` command to stop all running services, then runs the `up -d` command to restart them. This sequence ensures that any updates made to your YAML configuration file will take effect immediately. In other words, if you modify your Docker Compose YAML file and then run `dcp reload`, the containers will be recreated based on the new configuration, allowing your application to reflect the latest changes.
+**How it works**
 
-```sh
-# execute `down` then `up -d`
-dcp reload
-```
+1. `dcp reload` gracefully stops all currently running services using docker-compose down.
+2. It then initiates `docker-compose up` to restart them based on the latest configuration defined in your docker-compose.yml file.
 
+**Usage examples**
+
+- Basic reload (equivalent to docker-compose down && docker-compose up):
+
+    ```sh
+    dcp reload
+    ```
+
+- Reload in detached mode (equivalent to `docker-compose down && docker-compose up -d`):
+
+    ```sh
+    dcp reload -d
+    ```
+
+- Reload with a custom YAML file (equivalent to `docker-compose down && docker-compose -f xxx.yaml up`):
+
+    ```sh
+    dcp -f xxx.yaml reload
+    ```
+
+- Reload with a custom YAML file in detached mode (equivalent to `docker-compose down && docker-compose -f xxx.yaml up -d`):
+
+    ```sh
+    dcp -f xxx.yaml reload -d
+    ```
 
 # Additional Features
 
-- Other Docker Compose commands: dcp.sh supports all docker-compose commands.
-- Custom commands: You can add custom Docker Compose commands to the script.
+- Supports all Docker Compose commands: dcp.sh seamlessly integrates with all existing docker-compose commands.
+- Custom commands: Feel free to add custom Docker Compose commands to the script for further personalization.
 
 # Notes
-- Environment variables: Ensure that Docker and Docker Compose are installed correctly in your environment.
-- Plugin mode: If you encounter any issues, try switching to standalone mode.
-- Security: Carefully review the script content before deploying it to a production environment to ensure its security.
+
+- Ensure Docker and Docker Compose are correctly installed in your environment.
+- If you encounter issues with plugin mode, try switching to standalone mode.
+- Carefully review the script content before deploying it to a production environment to ensure security.
