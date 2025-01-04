@@ -6,8 +6,8 @@ dcp() {
         prefix=${args%"reload"*}
         suffix=${args#"$prefix"}
         suffix=${suffix/"reload"/"up"}
-        (set -x; $COMPOSE_CMD down && $COMPOSE_CMD $prefix$suffix)
+        (set -x; eval "$COMPOSE_CMD down && $COMPOSE_CMD $prefix$suffix")
         return 0
     fi
-    (set -x; $COMPOSE_CMD $args )
+    (set -x; eval "$COMPOSE_CMD $args")
 }
