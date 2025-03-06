@@ -10,8 +10,9 @@
 # Installation
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/vulcanshen/docker-compose-convenience-script/refs/heads/main/dcp.sh -o dcp.sh
-source dcp.sh
+git clone https://github.com/vulcanshen/docker-compose-convenience-script.git ~/.dcp
+echo "source ~/.dcp/dcp.sh" >> ~/.bashrc
+source ~/.dcp/dcp.sh
 ```
 
 # Usage
