@@ -15,6 +15,14 @@ echo "source ~/.dcp/dcp.sh" >> ~/.bashrc
 source ~/.dcp/dcp.sh
 ```
 
+# Install as command
+
+```sh
+git clone https://github.com/vulcanshen/docker-compose-convenience-script.git dcp
+sudo cp dcp/dcp-cmd /usr/local/bin/dcp
+sudo chmod 755 /usr/local/bin/dcp
+```
+
 # Usage
 
 ## As a Docker Compose alias
