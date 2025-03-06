@@ -8,10 +8,12 @@ dcp() {
         upArg=${suffix/"reload"/"up"}
         downArg=${suffix/"reload"/"down"}
         downArg=${downArg/"-d"/""}
-#        (set -x; eval "$COMPOSE_CMD down && $COMPOSE_CMD $prefix$suffix")
-        (set -x; eval "$COMPOSE_CMD $prefix$downArg")
-        (set -x; eval "$COMPOSE_CMD $prefix$upArg")
+        eval "$COMPOSE_CMD $prefix$downArg"
+        eval "$COMPOSE_CMD $prefix$upArg"
+        return 0
+    elif [[ "$args" = "ps" ]]; then
+        eval "$COMPOSE_CMD ps --format \"table {{.Image}}\t{{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}\""
         return 0
     fi
-    (set -x; eval "$COMPOSE_CMD $args")
+    eval "$COMPOSE_CMD $args"
 }
