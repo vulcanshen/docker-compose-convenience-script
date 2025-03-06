@@ -1,0 +1,18 @@
+#!/bin/bash
+args="$@"
+COMPOSE_CMD="${COMPOSE_CMD:-docker compose}"
+if [[ "$args" = *reload* ]]; then
+ prefix=${args%"reload"*}
+ suffix=${args#"$prefix"}
+ upArg=${suffix/"reload"/"up"}
+ downArg=${suffix/"reload"/"down"}
+ downArg=${downArg/"-d"/""}
+#        (set -x; eval "$COMPOSE_CMD down && $COMPOSE_CMD $prefix$suffix")
+ eval "$COMPOSE_CMD $prefix$downArg"
+ eval "$COMPOSE_CMD $prefix$upArg"
+ exit 0
+elif [[ "$args" = "ps" ]]; then
+ eval "$COMPOSE_CMD ps --format \"table {{.Image}}\t{{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}\""
+ exit 0
+fi
+eval "$COMPOSE_CMD $args"
