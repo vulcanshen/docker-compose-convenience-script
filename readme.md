@@ -19,7 +19,7 @@ source ~/.dcp/dcp.sh
 
 ```sh
 git clone https://github.com/vulcanshen/docker-compose-convenience-script.git dcp
-sudo cp dcp/dcp-cmd /usr/local/bin/dcp
+sudo mv dcp/dcp-cmd /usr/local/bin/dcp
 sudo chmod 755 /usr/local/bin/dcp
 ```
 
