@@ -1,19 +1,25 @@
 #!/bin/bash
 dcp() {
     args="$@"
+    last="${!#}"
     COMPOSE_CMD="${COMPOSE_CMD:-docker compose}"
     if [[ "$args" = *reload* ]]; then
-        prefix=${args%"reload"*}
-        suffix=${args#"$prefix"}
-        upArg=${suffix/"reload"/"up"}
-        downArg=${suffix/"reload"/"down"}
-        downArg=${downArg/"-d"/""}
-        eval "$COMPOSE_CMD $prefix$downArg"
-        eval "$COMPOSE_CMD $prefix$upArg"
-        return 0
+            prefix=${args%"reload"*}
+            suffix=${args#"$prefix"}
+            upArg=${suffix/"reload"/"up"}
+            downCmd="$COMPOSE_CMD down $last"
+            upCmd="$COMPOSE_CMD $prefix$upArg"
+            echo "$downCmd"
+            eval "$downCmd"
+            echo "$upCmd"
+            eval "$upCmd"
+            exit 0
     elif [[ "$args" = "ps" ]]; then
-        eval "$COMPOSE_CMD ps --format \"table {{.Image}}\t{{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}\""
-        return 0
+            eval "$COMPOSE_CMD ps --format \"table {{.Image}}\t{{.Name}}\t{{.Service}}\t{{.Status}}\t{{.Ports}}\""
+            exit 0
     fi
-    eval "$COMPOSE_CMD $args"
+    
+    cmd="$COMPOSE_CMD $args"
+    echo "$cmd"
+    eval "$cmd"
 }
