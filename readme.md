@@ -29,6 +29,7 @@ sudo chmod 755 /usr/local/bin/dcp
 
 ```sh
 sudo curl -sL https://raw.githubusercontent.com/vulcanshen/docker-compose-convenience-script/refs/heads/main/dcp-cmd > /usr/local/bin/dcp
+sudo chmod 755 /usr/local/bin/dcp
 ```
 
 # Usage
