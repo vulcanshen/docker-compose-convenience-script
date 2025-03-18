@@ -7,7 +7,9 @@
 - **Default plugin mode**: Enjoy a more streamlined experience with the default plugin mode.
 - **Standalone mode support**: If you're using the standalone docker-compose command, simply set the **COMPOSE_CMD** environment variable.
 
-# Quick Start
+# Installation
+
+## Install as shell function
 
 ```sh
 git clone https://github.com/vulcanshen/docker-compose-convenience-script.git ~/.dcp
@@ -15,12 +17,18 @@ echo "source ~/.dcp/dcp.sh" >> ~/.bashrc
 source ~/.dcp/dcp.sh
 ```
 
-# Install as command
+## Install as command
 
 ```sh
 git clone https://github.com/vulcanshen/docker-compose-convenience-script.git dcp
 sudo mv dcp/dcp-cmd /usr/local/bin/dcp
 sudo chmod 755 /usr/local/bin/dcp
+```
+
+## Quick Install
+
+```sh
+sudo curl -sL https://raw.githubusercontent.com/vulcanshen/docker-compose-convenience-script/refs/heads/main/dcp-cmd > /usr/local/bin/dcp
 ```
 
 # Usage
